@@ -1,0 +1,60 @@
+.coin {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+
+  &__name {
+    color: #333;
+    text-align: center;
+    margin-bottom: 36px;
+    padding: 0 16px;
+  }
+
+  &__image {
+    width: 20%;
+    align-self: center;
+    margin-bottom: 18px;
+  }
+
+  &__price,
+  &__cap,
+  &__percentage {
+    margin: 8px 16px;
+    font-family: "Montserrat", sans-serif;
+    color: #5b5b5b;
+
+    & span {
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+    }
+  }
+
+  & button {
+    color: white;
+    background-color: #547794;
+    align-items: center;
+    padding: 12px 36px;
+    margin-top: 18px;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  & input {
+    padding: 11px 0;
+    padding-left: 16px;
+    width: 96px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    margin-right: 16px;
+  }
+}
