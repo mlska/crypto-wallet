@@ -7,7 +7,7 @@ import App from "./App";
 
 WebFont.load({
   google: {
-    families: ["Manrope", "Inter"],
+    families: ["Manrope", "Inter", "Poppins", "Montserrat"],
   },
 });
 
