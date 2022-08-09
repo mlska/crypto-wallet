@@ -44,11 +44,11 @@ const Coin = ({
         Zmiana 24h:{" "}
         {price_change_percentage_24h > 0 ? (
           <span style={{ color: "green" }}>
-            {price_change_percentage_24h} <ImArrowUp />
+            {price_change_percentage_24h}% <ImArrowUp />
           </span>
         ) : (
           <span style={{ color: "red" }}>
-            {price_change_percentage_24h} <ImArrowDown />
+            {price_change_percentage_24h}% <ImArrowDown />
           </span>
         )}
       </p>
