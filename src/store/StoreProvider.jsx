@@ -8,25 +8,25 @@ const apiEndPoint =
   "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false";
 
 const StoreProvider = ({ children }) => {
-  const [cryptos, setCryptos] = useState([]);
-  const [user, setUser] = useState(null);
+  const [coins, setCoins] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const getCryptos = () => {
+  const getCoins = () => {
     axiosRequest
       .get(apiEndPoint)
       .then((response) => {
-        setCryptos(response.data);
+        setCoins(response.data);
         console.log(response.data);
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
-    getCryptos();
+    getCoins();
   }, []);
 
   return (
-    <StoreContext.Provider value={{ cryptos, setCryptos, user, setUser }}>
+    <StoreContext.Provider value={{ coins, setCoins, users, setUsers }}>
       {children}
     </StoreContext.Provider>
   );
