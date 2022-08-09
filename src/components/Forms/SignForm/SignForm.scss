@@ -1,0 +1,70 @@
+.sign-form {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    color: #333;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  &__validate-message {
+    color: #f00;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 10px;
+  }
+
+  &__row {
+    margin: 10px;
+    display: flex;
+
+    & button {
+      flex-grow: 1;
+      padding: 10px;
+      background-color: #c2c9cd;
+      color: #333;
+      text-transform: uppercase;
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    & button:hover {
+      opacity: 0.8;
+    }
+
+    & button:nth-child(1) {
+      margin-right: 16px;
+      background-color: #547794;
+      color: white;
+    }
+  }
+
+  &__text {
+    margin-right: 8px;
+    display: inline-block;
+    width: 96px;
+    align-self: center;
+  }
+
+  & label {
+    width: 100%;
+    display: flex;
+  }
+
+  & input {
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 5px 0 5px 16px;
+
+    &:focus {
+      background-color: #eee;
+      outline: 0;
+    }
+    flex-grow: 1;
+  }
+}
