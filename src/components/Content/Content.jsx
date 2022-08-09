@@ -8,8 +8,8 @@ import { StoreContext } from "../../store/StoreProvider";
 
 const style = bemCssModules(ContentStyles);
 
-import Cryptos from "../Cryptos/Cryptos";
-import UserCryptos from "../UserCryptos/UserCryptos";
+import Coins from "../Coins/Coins";
+import UserCoins from "../UserCoins/UserCoins";
 
 const Content = () => {
   const { user } = useContext(StoreContext);
@@ -19,9 +19,9 @@ const Content = () => {
   return (
     <main className={style()}>
       <Routes>
-        <Route exact path="/" element={<Cryptos />} />
+        <Route exact path="/" element={<Coins />} />
         {isUserLogged && (
-          <Route exact path="/user-cryptos" element={<UserCryptos />} />
+          <Route exact path="/user-coins" element={<UserCoins />} />
         )}
 
         <Route exact path="*" element={<Navigate to="/" />} />
