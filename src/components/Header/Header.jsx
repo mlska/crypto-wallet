@@ -14,12 +14,18 @@ const style = bemCssModules(HeaderStyles);
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignModalOpen, setIsSignModalOpen] = useState(false);
-  const { user } = useContext(StoreContext);
+  const { activeUser, setActiveUser } = useContext(StoreContext);
 
-  const isUserLogged = Boolean(user);
+  const isUserLogged = Boolean(activeUser);
 
   const handleOnCloseLogin = () => setIsLoginModalOpen(false);
-  const handleOnClickLogin = () => setIsLoginModalOpen(true);
+  const handleOnClickLogin = () => {
+    if (isUserLogged) {
+      setActiveUser(null);
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
 
   const handleOnCloseSign = () => setIsSignModalOpen(false);
   const handleOnClickSign = () => setIsSignModalOpen(true);
@@ -39,7 +45,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link className={style("link")} to="/user-cryptos">
+              <Link className={style("link")} to="/user-coins">
                 Portfel
               </Link>
             </li>
