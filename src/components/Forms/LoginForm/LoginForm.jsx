@@ -14,7 +14,7 @@ const LoginForm = ({ handleOnClose, isModalOpen }) => {
   const [password, setPassword] = useState("");
   const [validateMessage, setValidateMessage] = useState("");
 
-  const { users } = useContext(StoreContext);
+  const { users, setActiveUser } = useContext(StoreContext);
 
   const handleOnChangeLogin = (event) => setLogin(event.target.value);
   const handleOnChangePassword = (event) => setPassword(event.target.value);
@@ -32,8 +32,16 @@ const LoginForm = ({ handleOnClose, isModalOpen }) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    resetStateofInputs();
-    handleOnClose();
+    users?.forEach((user) => {
+      if (user.login === login && user.password === password) {
+        setActiveUser(user);
+        resetStateofInputs();
+        handleOnClose();
+        return;
+      }
+    });
+
+    return setValidateMessage("Błędny login lub hasło");
   };
 
   useEffect(() => {
