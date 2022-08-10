@@ -12,9 +12,9 @@ import Coins from "../Coins/Coins";
 import UserCoins from "../UserCoins/UserCoins";
 
 const Content = () => {
-  const { user } = useContext(StoreContext);
+  const { activeUser } = useContext(StoreContext);
 
-  const isUserLogged = Boolean(user);
+  const isUserLogged = Boolean(activeUser);
 
   return (
     <main className={style()}>

@@ -18,9 +18,9 @@ const Coin = ({
 }) => {
   const [coinAmount, setCoinAmount] = useState(0);
 
-  const { user } = useContext(StoreContext);
+  const { activeUser } = useContext(StoreContext);
 
-  const isUserLogged = !Boolean(user);
+  const isUserLogged = Boolean(activeUser);
 
   const handleOnChange = (event) => setCoinAmount(event.target.value);
 
