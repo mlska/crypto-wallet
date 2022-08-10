@@ -20,6 +20,12 @@ const SignForm = ({ handleOnClose, isModalOpen }) => {
 
   const { users, setUsers } = useContext(StoreContext);
 
+  const messages = {
+    passed: "Użytkownik zarejestrowany",
+    loginExists: "Użytkownik o podanym loginie istnieje",
+    emailExists: "Użytkownik o podanym adresie email istnieje",
+  };
+
   const handleOnChangeLogin = (event) => setLogin(event.target.value);
   const handleOnChangePassword = (event) => setPassword(event.target.value);
   const handleOnChangeEmail = (event) => setEmail(event.target.value);
@@ -34,7 +40,6 @@ const SignForm = ({ handleOnClose, isModalOpen }) => {
   const resetStateofInputs = () => {
     setLogin("");
     setPassword("");
-    setValidateMessage("");
     setEmail("");
     setName("");
     setSurname("");
@@ -42,36 +47,63 @@ const SignForm = ({ handleOnClose, isModalOpen }) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    resetStateofInputs();
 
-    const newUser = {
-      id: uuid().slice(0, 8),
-      login,
-      password,
-      name,
-      surname,
-      email,
-      cash: parseInt(10000),
-      coins: [],
-    };
+    let checkOk = true;
 
-    setUsers((prevState) => [...prevState, newUser]);
+    users?.forEach((user) => {
+      if (user.login === login) {
+        checkOk = false;
+        return setValidateMessage(messages.loginExists);
+      } else if (user.email === email) {
+        checkOk = false;
+        return setValidateMessage(messages.emailExists);
+      }
+    });
 
-    setValidateMessage("Udało się!");
-    console.log("Nowy użytkownik stworzony");
-    console.log(newUser);
-    // handleOnClose();
+    if (checkOk) {
+      const newUser = {
+        id: uuid().slice(0, 8),
+        login,
+        password,
+        name,
+        surname,
+        email,
+        cash: parseInt(10000),
+        coins: [],
+      };
+
+      setUsers((prevState) => [...prevState, newUser]);
+      setValidateMessage(messages.passed);
+      resetStateofInputs();
+    }
   };
 
   useEffect(() => {
     if (isModalOpen) {
       resetStateofInputs();
+      setValidateMessage("");
     }
   }, [isModalOpen]);
 
   const validateMessageComponent = validateMessage.length ? (
     <p className={style("validate-message")}>{validateMessage}</p>
   ) : null;
+
+  const buttonsComponent =
+    validateMessage === messages.passed ? (
+      <div className={style("row")}>
+        <button onClick={handleOnCloseModal} type="button">
+          Zamknij
+        </button>
+      </div>
+    ) : (
+      <div className={style("row")}>
+        <button type="submit">Zarejestruj się</button>
+        <button onClick={handleOnCloseModal} type="button">
+          Anuluj
+        </button>
+      </div>
+    );
 
   return (
     <Modal handleOnClose={handleOnClose} isOpen={isModalOpen}>
@@ -116,12 +148,7 @@ const SignForm = ({ handleOnClose, isModalOpen }) => {
           </label>
         </div>
         {validateMessageComponent}
-        <div className={style("row")}>
-          <button type="submit">Zarejestruj się</button>
-          <button onClick={handleOnCloseModal} type="button">
-            Anuluj
-          </button>
-        </div>
+        {buttonsComponent}
       </form>
     </Modal>
   );

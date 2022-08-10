@@ -38,9 +38,12 @@
     }
 
     & button:nth-child(1) {
-      margin-right: 16px;
       background-color: #547794;
       color: white;
+    }
+
+    & button:nth-child(2) {
+      margin-left: 16px;
     }
   }
 
