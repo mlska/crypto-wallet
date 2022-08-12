@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import bemCssModules from "bem-css-modules";
 import { default as HeaderStyles } from "./Header.scss";
 import { FaBitcoin } from "react-icons/fa";
+import { AiOutlineUser, AiOutlineDollarCircle } from "react-icons/Ai";
+import { RiCoinLine } from "react-icons/ri";
 
 import { StoreContext } from "../../store/StoreProvider";
 
@@ -51,7 +53,23 @@ const Header = () => {
             </li>
           </ul>
         )}
-        <div>
+        <div className={style("section-wrap")}>
+          {isUserLogged && (
+            <div className={style("user-info")}>
+              <div>
+                <AiOutlineUser />
+                {activeUser.name} {activeUser.surname}
+              </div>
+              <div>
+                <AiOutlineDollarCircle />
+                {activeUser.cash}
+              </div>
+              <div>
+                <RiCoinLine />
+                {activeUser.coins.length}
+              </div>
+            </div>
+          )}
           <button
             className={style("btn", { secondary: !isUserLogged })}
             onClick={handleOnClickLogin}

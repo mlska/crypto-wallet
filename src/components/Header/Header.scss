@@ -62,4 +62,24 @@
       color: #333;
     }
   }
+
+  &__section-wrap {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__user-info {
+    color: #333;
+    display: flex;
+    gap: 16px;
+    border: 1px solid #547794;
+    border-radius: 4px;
+    padding: 7px 36px;
+
+    & div {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+  }
 }
