@@ -54,7 +54,12 @@ const Coin = ({
       </p>
       {isUserLogged && (
         <form onSubmit={handleSubmit}>
-          <input onChange={handleOnChange} value={coinAmount} type="number" />
+          <input
+            onChange={handleOnChange}
+            value={coinAmount}
+            type="number"
+            min={0}
+          />
           <button type="submit">Zakup kryptowalutę</button>
         </form>
       )}

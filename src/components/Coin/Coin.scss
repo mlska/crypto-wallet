@@ -57,4 +57,10 @@
     border: 1px solid #333;
     margin-right: 16px;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
