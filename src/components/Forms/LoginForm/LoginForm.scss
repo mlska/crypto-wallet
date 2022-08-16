@@ -31,6 +31,7 @@
       border-radius: 4px;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 32px;
     }
 
     & button:hover {
@@ -54,6 +55,12 @@
   & label {
     width: 100%;
     display: flex;
+    flex-direction: column;
+
+    & span {
+      align-self: flex-start;
+      margin-bottom: 4px;
+    }
   }
 
   & input {
