@@ -62,7 +62,7 @@ const Header = () => {
               </div>
               <div>
                 <AiOutlineDollarCircle />
-                {activeUser.cash}
+                {activeUser.cash.toFixed(2)}
               </div>
               <div>
                 <RiCoinLine />
