@@ -18,7 +18,8 @@ const Coin = ({
 }) => {
   const [coinAmount, setCoinAmount] = useState(0);
 
-  const { activeUser } = useContext(StoreContext);
+  const { activeUser, setActiveUser, users, setUsers } =
+    useContext(StoreContext);
 
   const isUserLogged = Boolean(activeUser);
 
@@ -26,7 +27,36 @@ const Coin = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Zakupiono ${coinAmount}  kryptowaluty ${id}`);
+
+    const userHasEnoughCash = activeUser.cash > coinAmount * current_price;
+    const validAmountOfCoins = coinAmount > 0;
+
+    if (validAmountOfCoins && userHasEnoughCash) {
+      const user = activeUser;
+
+      const userHasCoin = user.coins.some((item) => item.id === id);
+
+      if (userHasCoin) {
+        const index = user.coins.findIndex((object) => object.id === id);
+        user.coins[index].amount += parseFloat(coinAmount);
+      } else {
+        user.coins.push({ id, amount: parseFloat(coinAmount) });
+      }
+
+      user.cash = user.cash - coinAmount * current_price;
+
+      const updatedUsers = users.map((element) => {
+        if ((element.id = activeUser.id)) {
+          return { ...element, cash: user.cash, coins: user.coins };
+        }
+      });
+
+      setActiveUser(user);
+      setUsers(updatedUsers);
+      setCoinAmount(0);
+    } else {
+      return console.log("Zbyt mała ilość dolarów aby kupić");
+    }
   };
 
   return (
@@ -58,6 +88,7 @@ const Coin = ({
             onChange={handleOnChange}
             value={coinAmount}
             type="number"
+            step={0.0000001}
             min={0}
           />
           <button type="submit">Zakup kryptowalutę</button>
