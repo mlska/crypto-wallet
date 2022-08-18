@@ -34,16 +34,30 @@ const Coin = ({
     if (validAmountOfCoins && userHasEnoughCash) {
       const user = activeUser;
 
-      const userHasCoin = user.coins.some((item) => item.id === id);
+      const coin = {
+        id,
+        amount: parseFloat(coinAmount),
+        pay: coinAmount * current_price,
+      };
+
+      const userHasCoin = user.coins.some((item) => item.id === coin.id);
 
       if (userHasCoin) {
-        const index = user.coins.findIndex((object) => object.id === id);
-        user.coins[index].amount += parseFloat(coinAmount);
+        const index = user.coins.findIndex((object) => object.id === coin.id);
+        user.coins[index].amount += coin.amount;
+        user.coins[index].pay += coin.pay;
       } else {
-        user.coins.push({ id, amount: parseFloat(coinAmount) });
+        user.coins.push({
+          id: coin.id,
+          amount: coin.amount,
+          pay: coin.pay,
+          name,
+          image,
+          symbol,
+        });
       }
 
-      user.cash = user.cash - coinAmount * current_price;
+      user.cash = user.cash - coin.pay;
 
       const updatedUsers = users.map((element) => {
         if ((element.id = activeUser.id)) {
