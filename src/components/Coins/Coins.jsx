@@ -8,7 +8,7 @@ const style = bemCssModules(CoinsStyles);
 
 import Coin from "../Coin/Coin";
 
-const Cryptos = () => {
+const Coins = () => {
   const { coins } = useContext(StoreContext);
   const [search, setSearch] = useState("");
 
@@ -38,4 +38,4 @@ const Cryptos = () => {
   );
 };
 
-export default Cryptos;
+export default Coins;
