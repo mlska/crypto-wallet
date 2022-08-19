@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import bemCssModules from "bem-css-modules";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 
@@ -7,15 +7,55 @@ import { StoreContext } from "../../../store/StoreProvider";
 
 const style = bemCssModules(UserCoinStyles);
 
-const UserCoin = ({ name, symbol, image, id, pay, amount, current_price }) => {
+const UserCoin = ({
+  name,
+  symbol,
+  image,
+  id,
+  pay,
+  amount,
+  current_price: currentPrice,
+}) => {
   const [coinAmount, setCoinAmount] = useState(amount);
 
-  const profit = ((pay - amount * current_price) * 0.01).toFixed(3);
+  const { activeUser, setActiveUser, users, setUsers } =
+    useContext(StoreContext);
+
+  const averageUserCoinPrice = pay / amount;
+  const profit = parseFloat(
+    ((currentPrice / averageUserCoinPrice) * 100 - 100).toFixed(3)
+  );
 
   const handleOnChange = (event) => setCoinAmount(event.target.value);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const user = activeUser;
+
+    if (amount === parseFloat(coinAmount)) {
+      const index = user.coins.map((coin) => coin.id).indexOf(id);
+      console.log(index);
+      user.coins.splice(index, 1);
+    } else {
+      user.coins.map((coin) => {
+        if (coin.id === id) {
+          coin.amount -= parseFloat(coinAmount);
+          coin.pay -= parseFloat(averageUserCoinPrice * coinAmount);
+        }
+      });
+    }
+
+    user.cash += coinAmount * currentPrice;
+
+    const updatedUsers = users.map((element) => {
+      if ((element.id = activeUser.id)) {
+        return user;
+      }
+    });
+
+    setActiveUser(user);
+    setUsers(updatedUsers);
   };
 
   return (
@@ -26,8 +66,12 @@ const UserCoin = ({ name, symbol, image, id, pay, amount, current_price }) => {
         {`Ilość:`} <span>{amount}</span>
       </p>
       <p className={style("price")}>
+        {`Cena zakupu:`}
+        <span> ${averageUserCoinPrice}</span>
+      </p>
+      <p className={style("price")}>
         {`Aktualna cena:`}
-        <span> ${current_price}</span>
+        <span> ${currentPrice}</span>
       </p>
       <p className={style("percentage")}>
         Zysk:{" "}
