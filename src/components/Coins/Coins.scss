@@ -38,3 +38,31 @@
     gap: 36px;
   }
 }
+
+@media screen and (max-width: 978px) {
+  .coins__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+@media screen and (max-width: 648px) {
+  .coins__container {
+    flex-direction: column;
+
+    .coins__title {
+      margin: 36px 0 8px 0;
+    }
+
+    .coins__input {
+      margin: 8px 0 36px 0;
+    }
+  }
+
+  .coins__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 18px;
+  }
+}

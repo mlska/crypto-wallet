@@ -53,23 +53,23 @@ const Header = () => {
             </li>
           </ul>
         )}
-        <div className={style("section-wrap")}>
-          {isUserLogged && (
-            <div className={style("user-info")}>
-              <div>
-                <AiOutlineUser />
-                {activeUser.name} {activeUser.surname}
-              </div>
-              <div>
-                <AiOutlineDollarCircle />
-                {activeUser.cash.toFixed(2)}
-              </div>
-              <div>
-                <RiCoinLine />
-                {activeUser.coins.length}
-              </div>
+        {isUserLogged && (
+          <div className={style("user-info")}>
+            <div>
+              <AiOutlineUser />
+              {activeUser.name} {activeUser.surname}
             </div>
-          )}
+            <div>
+              <AiOutlineDollarCircle />
+              {activeUser.cash.toFixed(2)}
+            </div>
+            <div>
+              <RiCoinLine />
+              {activeUser.coins.length}
+            </div>
+          </div>
+        )}
+        <div className={style("section-wrap")}>
           <button
             className={style("btn", { secondary: !isUserLogged })}
             onClick={handleOnClickLogin}
