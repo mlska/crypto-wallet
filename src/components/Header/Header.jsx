@@ -33,7 +33,7 @@ const Header = () => {
   const handleOnClickSign = () => setIsSignModalOpen(true);
 
   return (
-    <header className={style()}>
+    <header className={style(isUserLogged ? { type: "logged" } : null)}>
       <div className={style("content-wrapper")}>
         <Link className={style("logo")} to="/">
           <FaBitcoin />
