@@ -105,7 +105,7 @@ const Coin = ({
             step={0.0000001}
             min={0}
           />
-          <button type="submit">Zakup kryptowalutę</button>
+          <button type="submit">Zakup</button>
         </form>
       )}
     </article>
