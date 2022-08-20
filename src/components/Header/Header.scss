@@ -73,7 +73,7 @@
 
   &__section-wrap {
     display: flex;
-    gap: 32px;
+    gap: 8px;
   }
 
   &__user-info {
@@ -99,8 +99,12 @@
 
 @media screen and (max-width: 978px) {
   .header {
-    height: 216px;
+    height: 136px;
+    background-color: var(--color-dark);
 
+    &_type_logged {
+      height: 216px;
+    }
     &__content-wrapper {
       flex-direction: column;
       gap: 16px;
