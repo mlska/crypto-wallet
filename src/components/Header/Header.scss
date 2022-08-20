@@ -1,10 +1,12 @@
+@import "../../styles/variables";
+
 .header {
   height: 64px;
-  background-color: #c2c9cd;
-  padding: 16px;
+  background-color: var(--color-dark);
 
   &__content-wrapper {
     margin: 0 auto;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,10 +18,15 @@
 
   &__logo {
     font-size: 1.5rem;
-    color: #333;
+    color: var(--color-light);
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
+
+    & svg {
+      color: var(--color-bitcoin);
+    }
   }
 
   & ul {
@@ -36,15 +43,15 @@
     padding: 8px;
     text-decoration: none;
     text-transform: uppercase;
-    color: white;
-    transition: 0.2s;
+    color: var(--color-light);
+    transition: var(--transition);
     &:hover {
-      opacity: 0.7;
+      opacity: var(--opacity);
     }
   }
   &__btn {
-    color: white;
-    background-color: #547794;
+    color: var(--color-light);
+    background-color: var(--color-primary);
     padding: 12px 36px;
     border-radius: 4px;
     border: 0;
@@ -59,8 +66,8 @@
     &_secondary {
       margin-right: 16px;
       background: transparent;
-      border: 1px solid #547794;
-      color: #333;
+      border: 1px solid var(--color-primary);
+      color: var(--color-light);
     }
   }
 
@@ -70,10 +77,10 @@
   }
 
   &__user-info {
-    color: #333;
+    color: var(--color-light);
     display: flex;
     gap: 16px;
-    border: 1px solid #547794;
+    border: 1px solid var(--color-primary);
     border-radius: 4px;
     padding: 7px 36px;
 
@@ -81,6 +88,11 @@
       display: flex;
       align-items: center;
       gap: 2px;
+
+      & svg {
+        color: var(--color-primary);
+        font-size: 1.2rem;
+      }
     }
   }
 }

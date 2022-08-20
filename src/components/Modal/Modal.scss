@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .modal {
   position: fixed;
   top: 50%;
@@ -7,7 +9,7 @@
   border-radius: 10px;
   border: 0;
   background-clip: padding-box;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--box-shadow);
   padding: 20px;
   width: 400px;
 
