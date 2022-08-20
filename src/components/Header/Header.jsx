@@ -35,10 +35,10 @@ const Header = () => {
   return (
     <header className={style()}>
       <div className={style("content-wrapper")}>
-        <div className={style("logo")}>
-          <FaBitcoin style={{ color: "rgba(247,147,26)" }} />
+        <Link className={style("logo")} to="/">
+          <FaBitcoin />
           Crypto Wallet
-        </div>
+        </Link>
         {isUserLogged && (
           <ul>
             <li>
