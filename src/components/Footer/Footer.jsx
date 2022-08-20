@@ -8,7 +8,7 @@ const styles = bemCssModules(FooterStyles);
 const Footer = () => {
   return (
     <footer className={styles()}>
-      <div>Copyright &copy; mlska</div>
+      <div>Copyright &copy; 2022 mlska. All Rights Reserved</div>
     </footer>
   );
 };
